@@ -149,9 +149,8 @@ void JSON_print(const JSON &temp, int depth = 0, bool is_value = false, bool is_
         std::cout << str << "]" << std::endl;
         break;
     case JSON::TYPE::Object:
-
         ++depth;
-        std::cout << "{" << std::endl;
+        std::cout <<(is_value?"":str)<< "{" << std::endl;
         for (auto it = temp.getObject().begin(); it != temp.getObject().end(); ++it)
         {
             std::cout << str1 << "\"" << it->first << "\":";

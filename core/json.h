@@ -61,6 +61,8 @@ public:
     // JSON 输出
     friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
 
-    // JSON 解释器
-    
+    // JSON 序列化
+
+    // JSON 反序列化
+
 };

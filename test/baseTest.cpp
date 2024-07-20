@@ -22,15 +22,17 @@ void basetest()
     vec.emplace_back(myJson_Number);
     vec.emplace_back(myJson_bool);
     vec.emplace_back(vec);
-    JSON myJson_vector(vec);
+   
    
     // Object
     std::unordered_map<std::string, JSON> map;
     map.insert(std::make_pair("girlfriend", myJson_null));
     map.insert(std::make_pair("name", myJson_string));
     map.insert(std::make_pair("ID", myJson_Number));
-    map.insert(std::make_pair("other", myJson_vector));
     JSON myJson_map(map);
+    vec.push_back(map);
+    JSON myJson_vector(vec);
+    std::cout<<myJson_vector<<std::endl;
     
     // Object 嵌套
     std::unordered_map<std::string, JSON> map1;
