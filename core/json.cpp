@@ -115,64 +115,68 @@ std::unordered_map<std::string, JSON> &JSON::getEnableObject() const
 }
 
 // JSON数据的输出
-void JSON_print(const JSON &temp, int depth = 0, bool is_value = false, bool is_end = false)
+void JSON_print(const JSON &temp, int depth = 0, bool is_value = false, bool is_end = false, bool is_obj = true)
 {
     std::string str(depth * 4, ' ');
     std::string str1((depth + 1) * 4, ' ');
     switch (temp.getType())
     {
     case JSON::TYPE::Null:
-        std::cout << (is_value ? " " : str)  << "null" <<(is_end?"":",") << std::endl;
+        std::cout << (is_value ? " " : str) << "null" << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::String:
-        std::cout << (is_value ? " " : str) << "\"" << temp.getString() << "\""<<(is_end?"":",") << std::endl;
+        std::cout << (is_value ? " " : str) << "\"" << temp.getString() << "\"" << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::Number:
-        std::cout << (is_value ? " " : str) << temp.getNumber() << ""<<(is_end?"":",") << std::endl;
+        std::cout << (is_value ? " " : str) << temp.getNumber() << "" << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::Boolean:
-        std::cout << (is_value ? " " : str) << "\"" << (temp.getBoolean() ? "true" : "false") << "\""<<(is_end?"":",") << std::endl;
+        std::cout << (is_value ? " " : str) << "\"" << (temp.getBoolean() ? "true" : "false") << "\"" << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::Array:
-        if(temp.getArray().size()==0){
-             std::cout << (is_value ? " " : str) << "[]"<<(is_end?"":",") << std::endl;
-             break;
+        if (temp.getArray().size() == 0)
+        {
+            std::cout << (is_value ? " " : str) << "[]" << (is_end ? "" : ",") << std::endl;
+            break;
         }
         ++depth;
         std::cout << (is_value ? " " : str) << "[" << std::endl;
-        for (size_t i =0 ; i<temp.getArray().size();++i)
+        for (size_t i = 0; i < temp.getArray().size(); ++i)
         {
             // 当前元素是最后一个元素
-            if(i==temp.getArray().size()-1){
-                JSON_print(temp.getArray().at(i), depth,false,true);
+            if (i == temp.getArray().size() - 1)
+            {
+                JSON_print(temp.getArray().at(i), depth, false, true, false);
             }
-            else{
-                JSON_print(temp.getArray().at(i), depth);
+            else
+            {
+                JSON_print(temp.getArray().at(i), depth, false, false, false);
             }
         }
-        std::cout << str << (is_end?"]":"],") << std::endl;
+        std::cout << str << (is_end ? "]" : "],") << std::endl;
         break;
     case JSON::TYPE::Object:
-        if(temp.getObject().size()==0){
-             std::cout <<(is_value?" ":str)<< "{}" <<(is_end?"":",")<< std::endl;
-             break;
+        if (temp.getObject().size() == 0)
+        {
+            std::cout << (is_value ? " " : str) << "{}" << (is_end ? "" : ",") << std::endl;
+            break;
         }
         ++depth;
-        std::cout <<(is_value?" ":str)<< "{" << std::endl;
+        std::cout << (is_value ? " " : str) << "{" << std::endl;
         for (auto it = temp.getObject().begin(); it != temp.getObject().end(); ++it)
         {
             std::cout << str1 << "\"" << it->first << "\":";
             // 当前元素是最后一个元素
             if (std::next(it) == temp.getObject().end())
-            {   
-                JSON_print(it->second, depth, true, true);
+            {
+                JSON_print(it->second, depth, true, true, false);
             }
             else
             {
-                JSON_print(it->second, depth, true);
+                JSON_print(it->second, depth, true, false, false);
             }
         }
-        std::cout << str << (is_end?"}":"},")<< std::endl;
+        std::cout << str << (is_end ? "}" : (is_obj ? "}" : "},")) << std::endl;
         break;
     default:
         throw std::runtime_error("print error ");
