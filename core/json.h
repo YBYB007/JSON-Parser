@@ -58,6 +58,9 @@ public:
     std::vector<JSON> &getEnableArray() const;
     std::unordered_map<std::string, JSON> &getEnableObject() const;
 
-    // JSON输出
+    // JSON 输出
     friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
+
+    // JSON 解释器
+    
 };

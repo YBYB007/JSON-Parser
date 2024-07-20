@@ -117,38 +117,40 @@ std::unordered_map<std::string, JSON> &JSON::getEnableObject() const
 // JSON数据的输出
 void JSON_print(const JSON &temp, int depth = 0, bool is_value = false)
 {
+    
     std::string str(depth * 3, ' ');
     std::string str1((depth + 1) * 3, ' ');
     switch (temp.getType())
     {
     case JSON::TYPE::Null:
-        std::cout << (is_value ? " " : str) << "\"" << "NaN" << "\"" << std::endl;
+        std::cout << (is_value ? " " : str) << "\"" << "NaN" << "\"," << std::endl;
         break;
     case JSON::TYPE::String:
-        std::cout << (is_value ? " " : str) << "\"" << temp.getString() << "\"" << std::endl;
+        std::cout << (is_value ? " " : str) << "\"" << temp.getString() << "\"," << std::endl;
         break;
     case JSON::TYPE::Number:
-        std::cout << (is_value ? " " : str) << temp.getNumber() << std::endl;
+        std::cout << (is_value ? " " : str) << temp.getNumber() << ","<< std::endl;
         break;
     case JSON::TYPE::Boolean:
-        std::cout << (is_value ? " " : str) << "\"" << (temp.getBoolean() ? "true" : "false") << "\":" << std::endl;
+        std::cout << (is_value ? " " : str) << "\"" << (temp.getBoolean()?"true":"false")<< "\","<< std::endl;      
         break;
     case JSON::TYPE::Array:
         std::cout << (is_value ? " " : str) << "[" << std::endl;
         ++depth;
         for (const auto &i : temp.getArray())
         {
-            JSON_print(i, depth);
+            JSON_print(i, depth);   
         }
         std::cout << str << "]" << std::endl;
         break;
     case JSON::TYPE::Object:
+
         ++depth;
         std::cout << "{" << std::endl;
         for (const auto &i : temp.getObject())
         {
             std::cout << str1 << "\"" << i.first << "\":";
-            JSON_print(i.second, depth, true);
+           JSON_print(i.second, depth, true);
         }
         std::cout << str << "}" << std::endl;
         break;
