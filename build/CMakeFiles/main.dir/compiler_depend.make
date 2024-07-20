@@ -4,7 +4,8 @@
 CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
   /root/public/leetcode/JSON\ Parser/core/json.cpp \
   /root/public/leetcode/JSON\ Parser/core/json.h \
-  /root/public/leetcode/JSON\ Parser/test/baseTest.cpp \
+  /root/public/leetcode/JSON\ Parser/test/Deserialization.cpp \
+  /root/public/leetcode/JSON\ Parser/test/Serialization.cpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -18,6 +19,7 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
   /usr/include/c++/13/bits/basic_string.tcc \
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
+  /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
@@ -27,6 +29,7 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
   /usr/include/c++/13/bits/exception.h \
   /usr/include/c++/13/bits/exception_defines.h \
   /usr/include/c++/13/bits/exception_ptr.h \
+  /usr/include/c++/13/bits/fstream.tcc \
   /usr/include/c++/13/bits/functexcept.h \
   /usr/include/c++/13/bits/functional_hash.h \
   /usr/include/c++/13/bits/hash_bytes.h \
@@ -91,6 +94,7 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
   /usr/include/c++/13/ext/numeric_traits.h \
   /usr/include/c++/13/ext/string_conversions.h \
   /usr/include/c++/13/ext/type_traits.h \
+  /usr/include/c++/13/fstream \
   /usr/include/c++/13/initializer_list \
   /usr/include/c++/13/ios \
   /usr/include/c++/13/iosfwd \
@@ -185,8 +189,10 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
@@ -222,6 +228,10 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h:
 
@@ -303,11 +313,21 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/c++/13/bits/stl_construct.h:
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/13/bits/refwrap.h:
+
+/usr/include/c++/13/bits/fstream.tcc:
 
 /usr/include/c++/13/debug/debug.h:
 
@@ -318,8 +338,6 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 /usr/include/c++/13/bits/node_handle.h:
 
 /usr/include/c++/13/ios:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
 /usr/include/c++/13/bits/invoke.h:
 
@@ -342,6 +360,44 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 /usr/include/c++/13/bits/ostream_insert.h:
 
 /usr/include/c++/13/bits/hashtable.h:
+
+/root/public/leetcode/JSON\ Parser/test/Serialization.cpp:
+
+/usr/include/c++/13/bits/hash_bytes.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/c++/13/bits/codecvt.h:
+
+/usr/include/c++/13/bits/stl_vector.h:
+
+/usr/include/c++/13/bits/locale_facets.tcc:
+
+/usr/include/c++/13/bits/requires_hosted.h:
+
+/usr/include/c++/13/bits/string_view.tcc:
+
+/usr/include/features.h:
+
+/usr/include/c++/13/backward/binders.h:
+
+/usr/include/c++/13/bits/stringfwd.h:
+
+/usr/include/c++/13/cwctype:
+
+/usr/include/c++/13/bits/predefined_ops.h:
+
+/usr/include/c++/13/iosfwd:
+
+/usr/include/c++/13/cwchar:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+
+/usr/include/c++/13/ext/numeric_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/c++/13/bits/basic_ios.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
@@ -367,41 +423,7 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 
 /usr/include/wchar.h:
 
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
-/usr/include/c++/13/bits/basic_ios.h:
-
-/usr/include/c++/13/bits/locale_facets.tcc:
-
-/usr/include/c++/13/bits/requires_hosted.h:
-
-/usr/include/c++/13/bits/string_view.tcc:
-
-/usr/include/features.h:
-
-/usr/include/c++/13/backward/binders.h:
-
-/usr/include/c++/13/bits/stringfwd.h:
-
-/usr/include/c++/13/cwctype:
-
-/usr/include/c++/13/bits/predefined_ops.h:
-
-/usr/include/c++/13/iosfwd:
-
-/usr/include/c++/13/cwchar:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/c++/13/bits/hash_bytes.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
-
-/usr/include/c++/13/ext/numeric_traits.h:
-
 /usr/include/alloca.h:
-
-/usr/include/c++/13/bits/move.h:
 
 /usr/include/c++/13/bits/basic_string.tcc:
 
@@ -439,6 +461,8 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 
 /usr/include/time.h:
 
+/usr/include/c++/13/bits/move.h:
+
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
@@ -455,6 +479,16 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 
 /usr/include/c++/13/vector:
 
+/root/public/leetcode/JSON\ Parser/main.cpp:
+
+/root/public/leetcode/JSON\ Parser/test/Deserialization.cpp:
+
+/usr/include/c++/13/bits/istream.tcc:
+
+/usr/include/c++/13/bits/exception_ptr.h:
+
+/usr/include/c++/13/bits/stl_construct.h:
+
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 /usr/include/c++/13/bits/functexcept.h:
@@ -465,12 +499,6 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 
 /usr/include/c++/13/string:
 
-/root/public/leetcode/JSON\ Parser/main.cpp:
-
-/usr/include/c++/13/bits/istream.tcc:
-
-/usr/include/c++/13/bits/exception_ptr.h:
-
 /usr/include/asm-generic/errno.h:
 
 /usr/include/c++/13/bits/stl_iterator_base_funcs.h:
@@ -480,8 +508,6 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 /usr/include/c++/13/bits/stl_uninitialized.h:
 
 /usr/include/c++/13/bits/unordered_map.h:
-
-/usr/include/c++/13/bits/stl_vector.h:
 
 /usr/include/c++/13/bits/std_abs.h:
 
@@ -512,6 +538,8 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 /usr/include/c++/13/clocale:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/c++/13/fstream:
 
 /usr/include/c++/13/bits/stl_pair.h:
 
@@ -598,13 +626,3 @@ CMakeFiles/main.dir/main.cpp.o: /root/public/leetcode/JSON\ Parser/main.cpp \
 /usr/include/c++/13/exception:
 
 /usr/include/wctype.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
-
-/root/public/leetcode/JSON\ Parser/test/baseTest.cpp:
-
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:

@@ -1,33 +1,9 @@
 #include "../core/json.cpp"
 
-void basetest()
+void Serialization()
 {
-
     std::unordered_map<std::string, JSON> m_obj;
     std::vector<JSON> v_obj;
-    //   {
-    //     "company": {
-    //     "name": "Example Corp",
-    //     "employees": [
-    //       {
-    //         "id": 1,
-    //         "name": "John Doe",
-    //         "role": "Developer"
-    //       },
-    //       {
-    //         "id": 2,
-    //         "name": "Jane Smith",
-    //         "role": "Designer"
-    //       }
-    //       ]
-    //      },
-    //       "booleans": [true, false],
-    //       "numbers": [10, 20.5, 30],
-    //       "strings": ["apple", "banana", "cherry"],
-    //       "nulls": [null, null, null],
-    //       "emptyArray": [],
-    //       "emptyObject": {}
-    //     }
 
     JSON employess_mes1(m_obj);
     employess_mes1.getEnableObject().insert(std::make_pair("role", JSON("Developer")));
@@ -78,4 +54,22 @@ void basetest()
     my_json.getEnableObject().insert(std::make_pair("company", company));
 
     std::cout << my_json << std::endl;
+
+
+    std::ofstream outputFile("../test/data.json", std::ios::out);
+    if (!outputFile) {
+        std::cerr << "Unable to open file!" << std::endl;
+        return ; // 打开文件失败，返回错误代码
+    }
+    
+    outputFile << my_json << std::endl;
+    outputFile.flush(); // 刷新缓冲区，确保内容立即写入
+    outputFile.close(); // 关闭文件流
+
+    if (!outputFile) {
+        std::cerr << "Failed to write to file!" << std::endl;
+        return ; // 写入失败，返回错误代码
+    }
+
+    std::cout << "File written successfully!" << std::endl;
 }

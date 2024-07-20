@@ -1,10 +1,11 @@
 #include <iostream>
-#include "test/baseTest.cpp"
+#include "test/Serialization.cpp"
+#include "test/Deserialization.cpp"
 
 int main(int argc, char const *argv[])
 {
     /* code */
-    basetest(); 
-    
+    Serialization(); 
+    Deserialization();
     return 0;
 }

@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <fstream>
 
 class JSON
 {
@@ -37,7 +38,7 @@ public:
     JSON() : type(TYPE::Null), num(0) {}
     JSON(const std::string &s) : type(TYPE::String), str(new std::string(s)) {}
     JSON(double n) : type(TYPE::Number), num(n) {}
-    JSON(bool b,int) : type(TYPE::Boolean), boolean(b) {}
+    JSON(bool b, int) : type(TYPE::Boolean), boolean(b) {}
     JSON(const std::vector<JSON> &vec) : type(JSON::TYPE::Array), arr(new std::vector<JSON>(vec)) {}
     JSON(const std::unordered_map<std::string, JSON> &map) : type(JSON::TYPE::Object), object(new std::unordered_map<std::string, JSON>(map)) {}
     ~JSON();
@@ -58,12 +59,9 @@ public:
     std::vector<JSON> &getEnableArray() const;
     std::unordered_map<std::string, JSON> &getEnableObject() const;
 
-    // JSON 输出
-    friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
-
     // JSON 序列化
-    
+    friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
+    friend std::ofstream &operator<<(std::ofstream &fs, const JSON &jv);
 
     // JSON 反序列化
-    
 };
