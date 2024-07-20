@@ -5,6 +5,7 @@ CMakeFiles/main.dir/main.cpp.o
  /root/public/leetcode/JSON Parser/main.cpp
  /root/public/leetcode/JSON Parser/core/json.cpp
  /root/public/leetcode/JSON Parser/core/json.h
+ /root/public/leetcode/JSON Parser/test/baseTest.cpp
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h

@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -26,6 +27,7 @@ private:
         std::string *str;
         double num;
         bool boolean;
+        // 数据元素的插入直接用emplace_back就不需要自己构造结点了
         std::vector<JSON> *arr;
         std::unordered_map<std::string, JSON> *object;
     };
@@ -35,9 +37,9 @@ public:
     JSON() : type(TYPE::Null), num(0) {}
     JSON(const std::string &s) : type(TYPE::String), str(new std::string(s)) {}
     JSON(double n) : type(TYPE::Number), num(n) {}
-    JSON(bool b) : type(TYPE::Boolean), boolean(b) {}
-    JSON(const std::vector<JSON> &vec) : type(TYPE::Array), arr(new std::vector<JSON>(vec)) {}
-    JSON(const std::unordered_map<std::string, JSON> &map) : type(TYPE::Object), object(new std::unordered_map<std::string, JSON>(map)) {}
+    JSON(bool b,int) : type(TYPE::Boolean), boolean(b) {}
+    JSON(const std::vector<JSON> &vec) : type(JSON::TYPE::Array), arr(new std::vector<JSON>(vec)) {}
+    JSON(const std::unordered_map<std::string, JSON> &map) : type(JSON::TYPE::Object), object(new std::unordered_map<std::string, JSON>(map)) {}
     ~JSON();
 
     // 拷贝构造
@@ -45,11 +47,17 @@ public:
     // 赋值运算符
     JSON &operator=(const JSON &other);
 
-    // 数据
+    // 结点
     TYPE getType() const;
     std::string getString() const;
     double getNumber() const;
     bool getBoolean() const;
     const std::vector<JSON> &getArray() const;
     const std::unordered_map<std::string, JSON> &getObject() const;
+    // 可变
+    std::vector<JSON> &getEnableArray() const;
+    std::unordered_map<std::string, JSON> &getEnableObject() const;
+
+    // JSON输出
+    friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
 };
