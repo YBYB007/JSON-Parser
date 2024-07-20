@@ -115,31 +115,36 @@ std::unordered_map<std::string, JSON> &JSON::getEnableObject() const
 }
 
 // JSON数据的输出
-void JSON_print(const JSON &temp, int depth = 0, bool is_value = false)
+void JSON_print(const JSON &temp, int depth = 0, bool is_value = false, bool is_end = false)
 {
-    
     std::string str(depth * 3, ' ');
     std::string str1((depth + 1) * 3, ' ');
     switch (temp.getType())
     {
     case JSON::TYPE::Null:
-        std::cout << (is_value ? " " : str) << "\"" << "NaN" << "\"," << std::endl;
+        std::cout << (is_value ? " " : str) << "\"" << "NaN" << "\""<<(is_end?"":",") << std::endl;
         break;
     case JSON::TYPE::String:
-        std::cout << (is_value ? " " : str) << "\"" << temp.getString() << "\"," << std::endl;
+        std::cout << (is_value ? " " : str) << "\"" << temp.getString() << "\""<<(is_end?"":",") << std::endl;
         break;
     case JSON::TYPE::Number:
-        std::cout << (is_value ? " " : str) << temp.getNumber() << ","<< std::endl;
+        std::cout << (is_value ? " " : str) << temp.getNumber() << ""<<(is_end?"":",") << std::endl;
         break;
     case JSON::TYPE::Boolean:
-        std::cout << (is_value ? " " : str) << "\"" << (temp.getBoolean()?"true":"false")<< "\","<< std::endl;      
+        std::cout << (is_value ? " " : str) << "\"" << (temp.getBoolean() ? "true" : "false") << "\""<<(is_end?"":",") << std::endl;
         break;
     case JSON::TYPE::Array:
         std::cout << (is_value ? " " : str) << "[" << std::endl;
         ++depth;
-        for (const auto &i : temp.getArray())
+        for (size_t i =0 ; i<temp.getArray().size();++i)
         {
-            JSON_print(i, depth);   
+            // 当前元素是最后一个元素
+            if(i==temp.getArray().size()-1){
+                JSON_print(temp.getArray().at(i), depth,false,true);
+            }
+            else{
+                JSON_print(temp.getArray().at(i), depth);
+            }
         }
         std::cout << str << "]" << std::endl;
         break;
@@ -147,10 +152,18 @@ void JSON_print(const JSON &temp, int depth = 0, bool is_value = false)
 
         ++depth;
         std::cout << "{" << std::endl;
-        for (const auto &i : temp.getObject())
+        for (auto it = temp.getObject().begin(); it != temp.getObject().end(); ++it)
         {
-            std::cout << str1 << "\"" << i.first << "\":";
-           JSON_print(i.second, depth, true);
+            std::cout << str1 << "\"" << it->first << "\":";
+            // 当前元素是最后一个元素
+            if (std::next(it) == temp.getObject().end())
+            {   
+                JSON_print(it->second, depth, true, true);
+            }
+            else
+            {
+                JSON_print(it->second, depth, true);
+            }
         }
         std::cout << str << "}" << std::endl;
         break;
@@ -160,8 +173,8 @@ void JSON_print(const JSON &temp, int depth = 0, bool is_value = false)
     }
 }
 
-std::ostream &operator<<(std::ostream &os, const JSON &jv){
-    JSON_print(jv,0,false);
+std::ostream &operator<<(std::ostream &os, const JSON &jv)
+{
+    JSON_print(jv, 0, false);
     return os;
 }
-
