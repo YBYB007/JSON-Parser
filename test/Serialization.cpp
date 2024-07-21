@@ -1,5 +1,8 @@
 #include "../core/json.cpp"
 
+
+
+
 void Serialization()
 {
     std::unordered_map<std::string, JSON> m_obj;
@@ -56,7 +59,8 @@ void Serialization()
     std::cout << my_json << std::endl;
 
 
-    std::ofstream outputFile("../test/data.json", std::ios::out);
+    std::string file="../test/data.json";
+    std::ofstream outputFile(file, std::ios::out);
     if (!outputFile) {
         std::cerr << "Unable to open file!" << std::endl;
         return ; // 打开文件失败，返回错误代码
@@ -72,4 +76,7 @@ void Serialization()
     }
 
     std::cout << "File written successfully!" << std::endl;
+
+    std::string outfile="";
+    us();
 }

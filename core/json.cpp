@@ -88,6 +88,21 @@ bool JSON::getBoolean() const
         throw std::runtime_error("Not a boolean");
     return boolean;
 }
+
+void JSON::setNumber(double data)
+{
+    if (type != TYPE::Number)
+        throw std::runtime_error("Not a number");
+    this->num = data;
+}
+
+void JSON::setBoolean(bool b)
+{
+    if (type != TYPE::Boolean)
+        throw std::runtime_error("Not a boolean");
+    this->boolean = b;
+}
+
 const std::vector<JSON> &JSON::getArray() const
 {
     if (type != TYPE::Array)
@@ -113,7 +128,6 @@ std::unordered_map<std::string, JSON> &JSON::getEnableObject() const
         throw std::runtime_error("Not an object");
     return *object;
 }
-
 
 // JSON 序列化
 std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool is_value = false, bool is_end = false, bool is_obj = true)
@@ -147,11 +161,11 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
             // 当前元素是最后一个元素
             if (i == temp.getArray().size() - 1)
             {
-                JSON_print(os,temp.getArray().at(i), depth, false, true, false);
+                JSON_print(os, temp.getArray().at(i), depth, false, true, false);
             }
             else
             {
-                JSON_print(os,temp.getArray().at(i), depth, false, false, false);
+                JSON_print(os, temp.getArray().at(i), depth, false, false, false);
             }
         }
         os << str << (is_end ? "]" : "],") << std::endl;
@@ -170,11 +184,11 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
             // 当前元素是最后一个元素
             if (std::next(it) == temp.getObject().end())
             {
-                JSON_print(os,it->second, depth, true, true, false);
+                JSON_print(os, it->second, depth, true, true, false);
             }
             else
             {
-                JSON_print(os,it->second, depth, true, false, false);
+                JSON_print(os, it->second, depth, true, false, false);
             }
         }
         os << str << (is_end ? "}" : (is_obj ? "}" : "},")) << std::endl;
@@ -186,15 +200,45 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
     return os;
 }
 
+bool us(std::string file ,std::string outfile){
+    
+    std::ifstream inputFile(file); // 替换为你的文件名
+    std::ofstream outputFile(outfile); // 替换为你希望保存的文件名
+    if (!inputFile.is_open()) {
+        std::cerr << "无法打开输入文件" << std::endl;
+        return false;
+    }
+
+    if (!outputFile.is_open()) {
+        std::cerr << "无法打开输出文件" << std::endl;
+        return false;
+    }
+
+    char ch;
+    while (inputFile.get(ch)) {
+        // 如果当前字符不是空格或换行符，则写入输出文件
+        if (!std::isspace(static_cast<unsigned char>(ch))) {
+            outputFile.put(ch);
+        }
+    }
+
+    inputFile.close();
+    outputFile.close();
+
+    std::cout << "文件处理完成" << std::endl;
+
+}
+
 std::ofstream &operator<<(std::ofstream &os, const JSON &jv)
 {
     JSON_print(os, jv, 0, false);
+
     return os;
 }
 
 std::ostream &operator<<(std::ostream &os, const JSON &jv)
 {
-    JSON_print(os,jv, 0, false);
+    JSON_print(os, jv, 0, false);
     return os;
 }
 

@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <fstream>
 
+
 class JSON
 {
 public:
@@ -48,11 +49,13 @@ public:
     // 赋值运算符
     JSON &operator=(const JSON &other);
 
-    // 结点
+    // 结点操作
     TYPE getType() const;
     std::string getString() const;
     double getNumber() const;
     bool getBoolean() const;
+    void setNumber(double data);
+    void setBoolean(bool b);
     const std::vector<JSON> &getArray() const;
     const std::unordered_map<std::string, JSON> &getObject() const;
     // 可变
@@ -64,4 +67,5 @@ public:
     friend std::ofstream &operator<<(std::ofstream &fs, const JSON &jv);
 
     // JSON 反序列化
+
 };
