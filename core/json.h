@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <fstream>
+#include <stack>
 
 
 class JSON
@@ -67,6 +68,8 @@ public:
     friend std::ofstream &operator<<(std::ofstream &fs, const JSON &jv);
     // 压缩
     static bool us(std::string file ,std::string outfile);
+    
     // JSON 反序列化
-
+    static JSON get_vec_JSON();
+    static JSON get_map_JSON();
 };

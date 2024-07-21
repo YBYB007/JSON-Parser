@@ -1,51 +1,90 @@
 #include "../core/json.cpp"
 void Serialization()
 {
-    std::unordered_map<std::string, JSON> m_obj;
-    std::vector<JSON> v_obj;
 
-    JSON employess_mes1(m_obj);
+//     {
+//     "company": {
+//         "name": "Example Corp",
+//         "employee": [
+//             {
+//                 "id": 1,
+//                 "name": "John Doe",
+//                 "role": "Developer"
+//             },
+//             {
+//                 "id": 2,
+//                 "name": "Jane Smith",
+//                 "role": "Designer"
+//             }
+//         ]
+//     },
+//     "booleans": [
+//         "true",
+//         "false"
+//     ],
+//     "numbers": [
+//         10,
+//         20.5,
+//         30
+//     ],
+//     "strings": [
+//         "apple",
+//         "banana",
+//         "cherry"
+//     ],
+//     "nulls": [
+//         null,
+//         null,
+//         null
+//     ],
+//     "emptyArray": {},
+//     "emptyObject": []
+// }
+
+
+    // JSON包装
+    JSON employess_mes1=JSON::get_map_JSON();
     employess_mes1.getEnableObject().insert(std::make_pair("role", JSON("Developer")));
     employess_mes1.getEnableObject().insert(std::make_pair("name", JSON("John Doe")));
     employess_mes1.getEnableObject().insert(std::make_pair("id", JSON(1)));
 
-    JSON employees(v_obj);
+    JSON employees=JSON::get_vec_JSON();
     employees.getEnableArray().emplace_back(std::move(employess_mes1));
 
-    JSON employess_mes2(m_obj);
+    JSON employess_mes2=JSON::get_map_JSON();
     employess_mes2.getEnableObject().insert(std::make_pair("role", JSON("Designer")));
     employess_mes2.getEnableObject().insert(std::make_pair("name", JSON("Jane Smith")));
     employess_mes2.getEnableObject().insert(std::make_pair("id", JSON(2)));
 
     employees.getEnableArray().emplace_back(std::move(employess_mes2));
 
-    JSON booleans(v_obj);
+    JSON booleans=JSON::get_vec_JSON();
     booleans.getEnableArray().emplace_back(JSON(true, 1));
     booleans.getEnableArray().emplace_back(JSON(false, 0));
 
-    JSON numbers(v_obj);
+    JSON numbers=JSON::get_vec_JSON();
     numbers.getEnableArray().emplace_back(JSON(10));
     numbers.getEnableArray().emplace_back(JSON(20.5));
     numbers.getEnableArray().emplace_back(JSON(30));
 
-    JSON strings(v_obj);
+    JSON strings=JSON::get_vec_JSON();
     strings.getEnableArray().emplace_back(JSON("apple"));
     strings.getEnableArray().emplace_back(JSON("banana"));
     strings.getEnableArray().emplace_back(JSON("cherry"));
 
-    JSON nulls(v_obj);
+    JSON nulls=JSON::get_vec_JSON();
     nulls.getEnableArray().emplace_back(JSON());
     nulls.getEnableArray().emplace_back(JSON());
     nulls.getEnableArray().emplace_back(JSON());
 
-    JSON company(m_obj);
+    JSON company=JSON::get_map_JSON();
     company.getEnableObject().insert(std::make_pair("employee", employees));
     company.getEnableObject().insert(std::make_pair("name", JSON("Example Corp")));
 
     // 整个对象
-    JSON my_json(m_obj);
-    my_json.getEnableObject().insert(std::make_pair("emptyObject", JSON(m_obj)));
-    my_json.getEnableObject().insert(std::make_pair("emptyArray", JSON(v_obj)));
+    JSON my_json=JSON::get_map_JSON();
+    my_json.getEnableObject().insert(std::make_pair("emptyObject", JSON::get_vec_JSON()));
+    my_json.getEnableObject().insert(std::make_pair("emptyArray", JSON::get_map_JSON()));
     my_json.getEnableObject().insert(std::make_pair("nulls", nulls));
     my_json.getEnableObject().insert(std::make_pair("strings", strings));
     my_json.getEnableObject().insert(std::make_pair("numbers", numbers));
@@ -55,6 +94,9 @@ void Serialization()
     std::cout << my_json << std::endl;
 
 
+    
+
+     // JSON文件化
     std::string file="../test/data.json";
     std::ofstream outputFile(file, std::ios::out);
     if (!outputFile) {
@@ -74,5 +116,7 @@ void Serialization()
     std::cout << "File written successfully!" << std::endl;
 
     std::string outfile="../test/data_us.json";
+
+    // 压缩
     JSON::us(file,outfile);
 }

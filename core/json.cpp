@@ -1,4 +1,4 @@
-
+# pragma once
 #include "json.h"
 
 // 拷贝构造函数
@@ -129,6 +129,16 @@ std::unordered_map<std::string, JSON> &JSON::getEnableObject() const
     return *object;
 }
 
+JSON JSON::get_vec_JSON(){
+    std::vector<JSON> v_obj;
+    return std::move(JSON(v_obj));
+}
+
+JSON JSON::get_map_JSON(){
+    std::unordered_map<std::string, JSON> m_obj;
+    return std::move(JSON(m_obj));
+}
+
 // JSON 序列化
 std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool is_value = false, bool is_end = false, bool is_obj = true)
 {
@@ -202,8 +212,8 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
 
 bool JSON::us(std::string file ,std::string outfile){
     
-    std::ifstream inputFile(file); // 替换为你的文件名
-    std::ofstream outputFile(outfile); // 替换为你希望保存的文件名
+    std::ifstream inputFile(file); 
+    std::ofstream outputFile(outfile); 
     if (!inputFile.is_open()) {
         std::cerr << "无法打开输入文件" << std::endl;
         return false;
@@ -243,3 +253,4 @@ std::ostream &operator<<(std::ostream &os, const JSON &jv)
 }
 
 // JSON反序列化
+

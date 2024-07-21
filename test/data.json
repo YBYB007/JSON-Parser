@@ -33,7 +33,7 @@
         null,
         null
     ],
-    "emptyArray": [],
-    "emptyObject": {}
+    "emptyArray": {},
+    "emptyObject": []
 }
 
