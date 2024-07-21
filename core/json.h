@@ -65,7 +65,8 @@ public:
     // JSON 序列化
     friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
     friend std::ofstream &operator<<(std::ofstream &fs, const JSON &jv);
-
+    // 压缩
+    static bool us(std::string file ,std::string outfile);
     // JSON 反序列化
 
 };

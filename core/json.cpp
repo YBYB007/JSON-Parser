@@ -200,7 +200,7 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
     return os;
 }
 
-bool us(std::string file ,std::string outfile){
+bool JSON::us(std::string file ,std::string outfile){
     
     std::ifstream inputFile(file); // 替换为你的文件名
     std::ofstream outputFile(outfile); // 替换为你希望保存的文件名
@@ -226,7 +226,7 @@ bool us(std::string file ,std::string outfile){
     outputFile.close();
 
     std::cout << "文件处理完成" << std::endl;
-
+    return true;
 }
 
 std::ofstream &operator<<(std::ofstream &os, const JSON &jv)

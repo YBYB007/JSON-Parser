@@ -1,8 +1,4 @@
 #include "../core/json.cpp"
-
-
-
-
 void Serialization()
 {
     std::unordered_map<std::string, JSON> m_obj;
@@ -77,6 +73,6 @@ void Serialization()
 
     std::cout << "File written successfully!" << std::endl;
 
-    std::string outfile="";
-    us();
+    std::string outfile="../test/data_us.json";
+    JSON::us(file,outfile);
 }
