@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <fstream>
 #include <stack>
-
+#include <sstream>
 
 class JSON
 {

@@ -161,7 +161,7 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
     case JSON::TYPE::Array:
         if (temp.getArray().size() == 0)
         {
-            os << (is_value ? " " : str) << "[]" << (is_end ? "" : ",") << std::endl;
+            os << (is_value ? " " : str) << "[]" << (is_end ? "" : (is_obj ? "" : ",")) << std::endl;
             break;
         }
         ++depth;
@@ -183,7 +183,7 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
     case JSON::TYPE::Object:
         if (temp.getObject().size() == 0)
         {
-            os << (is_value ? " " : str) << "{}" << (is_end ? "" : ",") << std::endl;
+            os << (is_value ? " " : str) << "{}" << (is_end ? "" : (is_obj ? "" : ",")) << std::endl;
             break;
         }
         ++depth;
