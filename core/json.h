@@ -66,12 +66,14 @@ public:
     // JSON 序列化
     friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
     friend std::ofstream &operator<<(std::ofstream &fs, const JSON &jv);
+    static void Serialization(JSON &my_json, std::string file_name);
     // 压缩
     static bool us(std::string file, std::string outfile);
 
     // JSON 反序列化
     static JSON get_vec_JSON();
     static JSON get_map_JSON();
+    static JSON Deserialization(std::string file_name);
     // KV处理
     static JSON map_del(std::ifstream &file);
     // V处理

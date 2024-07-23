@@ -1,12 +1,9 @@
 #include <iostream>
-#include "test/Serialization.cpp"
-#include "test/Deserialization.cpp"
-
+#include "test/test.cpp"
 
 int main(int argc, char const *argv[])
 {
     /* code */
-    Serialization(); 
-    Deserialization();
+    ser_des_test();
     return 0;
 }

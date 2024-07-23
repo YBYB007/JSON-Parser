@@ -212,6 +212,27 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
     return os;
 }
 
+void JSON::Serialization(JSON &my_json, std::string file_name)
+{
+    std::ofstream outputFile(file_name, std::ios::out);
+    if (!outputFile)
+    {
+        std::cerr << "Unable to open file!" << std::endl;
+        return; // 打开文件失败，返回错误代码
+    }
+
+    outputFile << my_json << std::endl;
+    outputFile.flush(); // 刷新缓冲区，确保内容立即写入
+    outputFile.close(); // 关闭文件流
+
+    if (!outputFile)
+    {
+        std::cerr << "Failed to write to file!" << std::endl;
+        return; // 写入失败，返回错误代码
+    }
+    std::cout << "File written successfully!" << std::endl;
+}
+
 bool JSON::us(std::string file, std::string outfile)
 {
     std::ifstream inputFile(file);
@@ -270,6 +291,26 @@ std::ostream &operator<<(std::ostream &os, const JSON &jv)
 }
 
 // JSON反序列化
+JSON JSON::Deserialization(std::string file_name)
+{
+    std::ifstream file(file_name);
+    if (!file.is_open())
+    {
+        std::cerr << "无法打开文件" << std::endl;
+    }
+
+    std::string str;
+    char ch;
+    file.get(ch);
+    if (ch != '{')
+    {
+        std::cout << "非法的JSON格式" << std::endl;
+    }
+    JSON my_json = std::move(JSON::map_del(file));
+    file.close();
+    return std::move(my_json);
+}
+
 // V 读取
 JSON JSON::vec_del(std::ifstream &file)
 {
@@ -695,4 +736,3 @@ bool JSON::isDouble(const std::string &str)
         return false; // 转换失败或有错误
     }
 }
-
