@@ -1,1 +1,1 @@
-{"company":{"name":"ExampleCorp","employee":[{"id":1,"name":"JohnDoe","role":"Developer"},{"id":2,"name":"JaneSmith","role":"Designer"}]},"booleans":["true","false"],"numbers":[10,20.5,30],"strings":["apple","banana","cherry"],"nulls":[null,null,null],"emptyArray":{},"emptyObject":[]}
+{"company":{"name":"Example Corp","employee":[{"id":1,"name":"John Doe","role":"Developer"},{"id":2,"name":"Jane Smith","role":"Designer"}]},"booleans":["true","false"],"numbers":[10,20.5,30],"strings":["apple","banana","cherry"],"nulls":[null,null,null],"emptyArray":{},"emptyObject":[]}

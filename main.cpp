@@ -6,7 +6,7 @@
 int main(int argc, char const *argv[])
 {
     /* code */
-    //Serialization(); 
+    Serialization(); 
     Deserialization();
     return 0;
 }

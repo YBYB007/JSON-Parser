@@ -1,4 +1,4 @@
-# pragma once
+#pragma once
 #include "json.h"
 
 // 拷贝构造函数
@@ -129,12 +129,14 @@ std::unordered_map<std::string, JSON> &JSON::getEnableObject() const
     return *object;
 }
 
-JSON JSON::get_vec_JSON(){
+JSON JSON::get_vec_JSON()
+{
     std::vector<JSON> v_obj;
     return std::move(JSON(v_obj));
 }
 
-JSON JSON::get_map_JSON(){
+JSON JSON::get_map_JSON()
+{
     std::unordered_map<std::string, JSON> m_obj;
     return std::move(JSON(m_obj));
 }
@@ -153,7 +155,7 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
         os << (is_value ? " " : str) << "\"" << temp.getString() << "\"" << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::Number:
-        os << (is_value ? " " : str) << temp.getNumber()  << (is_end ? "" : ",") << std::endl;
+        os << (is_value ? " " : str) << temp.getNumber() << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::Boolean:
         os << (is_value ? " " : str) << "\"" << (temp.getBoolean() ? "true" : "false") << "\"" << (is_end ? "" : ",") << std::endl;
@@ -210,24 +212,39 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
     return os;
 }
 
-bool JSON::us(std::string file ,std::string outfile){
-    
-    std::ifstream inputFile(file); 
-    std::ofstream outputFile(outfile); 
-    if (!inputFile.is_open()) {
+bool JSON::us(std::string file, std::string outfile)
+{
+    std::ifstream inputFile(file);
+    std::ofstream outputFile(outfile);
+    if (!inputFile.is_open())
+    {
         std::cerr << "无法打开输入文件" << std::endl;
         return false;
     }
 
-    if (!outputFile.is_open()) {
+    if (!outputFile.is_open())
+    {
         std::cerr << "无法打开输出文件" << std::endl;
         return false;
     }
 
+    bool inString = false; // 标记是否在字符串中
     char ch;
-    while (inputFile.get(ch)) {
-        // 如果当前字符不是空格或换行符，则写入输出文件
-        if (!std::isspace(static_cast<unsigned char>(ch))) {
+    while (inputFile.get(ch))
+    {
+        if (ch == '"')
+        {
+            // 如果遇到引号，切换 inString 状态
+            inString = !inString;
+        }
+        if (inString)
+        {
+            // 如果在字符串中，保留所有字符
+            outputFile.put(ch);
+        }
+        else if (!std::isspace(static_cast<unsigned char>(ch)))
+        {
+            // 如果不在字符串中且当前字符不是空白字符，则写入输出文件
             outputFile.put(ch);
         }
     }
@@ -253,4 +270,3 @@ std::ostream &operator<<(std::ostream &os, const JSON &jv)
 }
 
 // JSON反序列化
-

@@ -418,56 +418,10 @@ bool isDouble(const std::string &str)
     }
 }
 
-int us(){
-     std::ifstream inputFile("../test/data.json"); // 待处理的文件
-    std::ofstream outputFile("../test/test.json"); // 输出文件
-     std::string line;
-    bool inString = false; // 状态标志，表示是否在字符串内部
-    char lastChar = 0; // 用于记录上一个字符，以便处理转义字符
-
-    if (!inputFile.is_open() || !outputFile.is_open()) {
-        std::cerr << "Error opening files." << std::endl;
-        return 1;
-    }
-
-    std::string newLine;
-    while (getline(inputFile, line)) {
-        for (size_t i = 0; i < line.length(); ++i) {
-            if (line[i] == '"' && (lastChar != '\\')) {
-                inString = !inString;
-                if (!inString && !newLine.empty()) {
-                    outputFile << newLine;
-                    newLine.clear();
-                }
-                newLine += line[i]; // 保留字符串的引号
-            } else if (inString) {
-                newLine += line[i]; // 在字符串内部，保留所有字符
-            } else if (line[i] != ' ' && line[i] != '\n') {
-                newLine += line[i]; // 非字符串内部，忽略空格和换行
-            }
-            lastChar = line[i];
-        }
-        // 处理行尾的字符串状态
-        if (inString && !newLine.empty()) {
-            outputFile << newLine;
-            newLine.clear();
-        }
-    }
-
-    // 检查文件末尾是否有非字符串状态的数据
-    if (!inString && !newLine.empty()) {
-        outputFile << newLine;
-    }
-
-    inputFile.close();
-    outputFile.close();
-    return 0;
-}
 
 // 反序列化
 void Deserialization()
 {
-    us();
     std::ifstream file("../test/test_data.json");
     if (!file.is_open())
     {
