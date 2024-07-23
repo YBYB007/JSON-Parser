@@ -72,4 +72,8 @@ public:
     // JSON 反序列化
     static JSON get_vec_JSON();
     static JSON get_map_JSON();
+    // KV处理
+    // V处理
+    // JSON插入
+    // double判断
 };

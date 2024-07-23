@@ -153,7 +153,7 @@ std::ostream &JSON_print(std::ostream &os, const JSON &temp, int depth = 0, bool
         os << (is_value ? " " : str) << "\"" << temp.getString() << "\"" << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::Number:
-        os << (is_value ? " " : str) << temp.getNumber() << "" << (is_end ? "" : ",") << std::endl;
+        os << (is_value ? " " : str) << temp.getNumber()  << (is_end ? "" : ",") << std::endl;
         break;
     case JSON::TYPE::Boolean:
         os << (is_value ? " " : str) << "\"" << (temp.getBoolean() ? "true" : "false") << "\"" << (is_end ? "" : ",") << std::endl;
