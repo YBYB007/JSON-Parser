@@ -93,10 +93,7 @@ void Serialization()
 
     std::cout << my_json << std::endl;
 
-
-    
-
-     // JSON文件化
+     // JSON序列化
     std::string file="../test/data.json";
     std::ofstream outputFile(file, std::ios::out);
     if (!outputFile) {

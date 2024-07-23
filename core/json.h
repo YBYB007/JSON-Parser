@@ -67,13 +67,17 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const JSON &jv);
     friend std::ofstream &operator<<(std::ofstream &fs, const JSON &jv);
     // 压缩
-    static bool us(std::string file ,std::string outfile);
-    
+    static bool us(std::string file, std::string outfile);
+
     // JSON 反序列化
     static JSON get_vec_JSON();
     static JSON get_map_JSON();
     // KV处理
+    static JSON map_del(std::ifstream &file);
     // V处理
+    static JSON vec_del(std::ifstream &file);
     // JSON插入
+    static JSON set_JSON(const std::string &str);
     // double判断
+    static bool isDouble(const std::string &str);
 };
